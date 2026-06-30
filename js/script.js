@@ -109,3 +109,32 @@
       setTimeout(()=> s.remove(), 1600);
     }
   }
+
+  const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+
+let started = false;
+
+// Otomatis play saat klik pertama
+document.addEventListener("click", () => {
+    if (!started) {
+        music.play();
+        started = true;
+        musicBtn.innerHTML = "⏸ Pause Music";
+    }
+}, { once: true });
+
+// Tombol Play / Pause
+musicBtn.addEventListener("click", (e) => {
+
+    e.stopPropagation();
+
+    if (music.paused) {
+        music.play();
+        musicBtn.innerHTML = "⏸ Pause Music";
+    } else {
+        music.pause();
+        musicBtn.innerHTML = "▶ Play Music";
+    }
+
+});
