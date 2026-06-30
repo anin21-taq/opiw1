@@ -109,3 +109,11 @@
       setTimeout(()=> s.remove(), 1600);
     }
   }
+
+  const music = document.getElementById("bgMusic");
+
+window.addEventListener("load", () => {
+    music.play().catch(() => {
+        console.log("Browser memblokir autoplay.");
+    });
+});
