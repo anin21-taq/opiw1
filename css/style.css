@@ -278,6 +278,7 @@
 .love-photo{
 
     position:absolute;
+
     left:50%;
     top:50%;
 
@@ -285,11 +286,12 @@
 
     opacity:0;
 
+    transition:.8s ease;
+
     pointer-events:none;
 
-    transition:.8s;
-
 }
+
 .love-photo.show{
 
     opacity:1;
