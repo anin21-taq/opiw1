@@ -113,6 +113,7 @@
 const music = document.getElementById("bgMusic");
 const playBtn = document.getElementById("playBtn");
 const introScreen = document.getElementById("introScreen");
+const lovePhoto = document.querySelector(".love-photo");
 
 // Mulai website setelah tombol diklik
 playBtn.addEventListener("click", () => {
@@ -127,3 +128,11 @@ playBtn.addEventListener("click", () => {
     }, 700);
 
 });
+setTimeout(() => {
+    lovePhoto.classList.add("show");
+    spawnSparkles();
+},350);
+
+setTimeout(() => {
+    revealCaption.classList.add("show");
+},900);

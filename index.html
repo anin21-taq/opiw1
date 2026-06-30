@@ -111,84 +111,76 @@
 
         </div>
 
-        <div class="slide" data-duration="0">
+<div class="slide" data-duration="0">
 
-            <div class="eyebrow">
-                Satu hadiah kecil dari anin
-            </div>
+    <div class="eyebrow">
+        Satu hadiah kecil dari anin
+    </div>
 
-            <div class="love-photo">
+    <p class="gift-hint">
+        buka kotaknya ya 🎁
+    </p>
 
+    <div class="box-stage" id="boxStage">
 
-            <p class="gift-hint">
-                buka kotaknya ya 🎁
-            </p>
+        <div class="bow">🎀</div>
 
-<svg viewBox="0 0 220 200" width="220" height="200">
+        <div class="box-lid"></div>
 
-    <defs>
+        <div class="box-base"></div>
 
-        <clipPath id="heartClip">
+    </div>
 
-            <path d="
+    <div class="tap-label" id="tapLabel">
+        tap kotaknya untuk dibuka
+    </div>
+
+    <!-- FOTO LOVE -->
+    <div class="love-photo">
+
+        <svg viewBox="0 0 220 200">
+
+            <defs>
+                <clipPath id="heartClip">
+                    <path d="
+                        M110 190
+                        C20 130,-10 70,35 35
+                        C65 10,100 25,110 55
+                        C120 25,155 10,185 35
+                        C230 70,200 130,110 190 Z
+                    "/>
+                </clipPath>
+            </defs>
+
+            <image
+                href="../image/olfiana.jpg"
+                x="0"
+                y="0"
+                width="220"
+                height="200"
+                preserveAspectRatio="xMidYMid slice"
+                clip-path="url(#heartClip)"
+            />
+
+            <path
+                d="
                 M110 190
                 C20 130,-10 70,35 35
                 C65 10,100 25,110 55
                 C120 25,155 10,185 35
-                C230 70,200 130,110 190 Z
-            "/>
-
-        </clipPath>
-
-    </defs>
-
-    <image
-        href="../image/olfiana.jpg"
-        x="0"
-        y="0"
-        width="220"
-        height="200"
-        preserveAspectRatio="xMidYMid slice"
-        clip-path="url(#heartClip)"
-    />
-
-    <path
-        d="
-        M110 190
-        C20 130,-10 70,35 35
-        C65 10,100 25,110 55
-        C120 25,155 10,185 35
-        C230 70,200 130,110 190 Z"
-        fill="none"
-        stroke="#ff7b9c"
-        stroke-width="4"/>
-
-</svg>
-
-</div>
-
-            <div class="reveal-caption" id="revealCaption">
-                maaf ya sayang,
-                makasih udah selalu sabar sama aku 💕
-            </div>
-
-            <div class="box-stage" id="boxStage">
-
-                <div class="bow">🎀</div>
-
-                <div class="box-lid"></div>
-
-                <div class="box-base"></div>
-
-            </div>
-
-            <div class="tap-label" id="tapLabel">
-                tap kotaknya untuk dibuka
-            </div>
-
-        </div>
+                C230 70,200 130,110 190 Z"
+                fill="none"
+                stroke="#ff7b9c"
+                stroke-width="4"/>
+        </svg>
 
     </div>
+
+    <div class="reveal-caption" id="revealCaption">
+        maaf ya sayang, makasih udah selalu sabar sama aku 💕
+    </div>
+
+</div>
 
     <!-- AUDIO -->
     <audio id="bgMusic" loop>

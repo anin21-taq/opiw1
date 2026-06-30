@@ -276,16 +276,20 @@
   }
 
   .love-photo{
-    position:absolute;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-48%);
     width:220px;
     height:200px;
+
+    margin-top:25px;
+
+    opacity:0;
+    transform:translateY(30px) scale(.5);
+
+    transition:.7s ease;
+
+    pointer-events:none;
 }
 
-.love-photo svg{
-    width:100%;
-    height:100%;
-    display:block;
+.love-photo.show{
+    opacity:1;
+    transform:translateY(0) scale(1);
 }
