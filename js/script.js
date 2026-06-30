@@ -45,7 +45,7 @@
 
     current = index;
 
-    const duration = parseInt(slides[index].dataset.duration, 15);
+    const duration = parseInt(slides[index].dataset.duration, 10);
     if(duration > 0){
       const seg = segFills[index];
       const fill = seg.querySelector('.progress-seg-fill');
