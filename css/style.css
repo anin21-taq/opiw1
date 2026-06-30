@@ -1,4 +1,75 @@
 
+/*================ INTRO =================*/
+
+#introScreen{
+    position:fixed;
+    inset:0;
+    z-index:99999;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:linear-gradient(135deg,#fff3f7,#ffe2ea);
+
+    transition:1s;
+}
+
+#introScreen.hide{
+    opacity:0;
+    visibility:hidden;
+}
+
+.intro-content{
+    text-align:center;
+}
+
+.intro-content h1{
+    font-size:70px;
+    margin-bottom:10px;
+}
+
+.intro-content h2{
+    font-size:40px;
+    color:#e85d75;
+    margin-bottom:15px;
+}
+
+.intro-content p{
+    font-size:18px;
+    color:#666;
+    margin-bottom:35px;
+}
+
+#playBtn{
+
+    width:130px;
+    height:130px;
+
+    border:none;
+    border-radius:50%;
+
+    background:#ff7b9c;
+
+    color:white;
+
+    font-size:30px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    box-shadow:0 0 30px rgba(255,105,135,.4);
+
+}
+
+#playBtn:hover{
+
+    transform:scale(1.08);
+
+    background:#e85d75;
+
+}
   :root{
     --cream:#fff6f1;
     --pink:#ff8fa3;

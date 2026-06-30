@@ -111,7 +111,19 @@
   }
 
 const music = document.getElementById("bgMusic");
+const playBtn = document.getElementById("playBtn");
+const introScreen = document.getElementById("introScreen");
 
-document.addEventListener("click", () => {
+// Mulai website setelah tombol diklik
+playBtn.addEventListener("click", () => {
+
     music.play();
-}, { once: true });
+
+    introScreen.classList.add("hide");
+
+    // Tunggu animasi overlay selesai
+    setTimeout(() => {
+        goToSlide(0);
+    }, 700);
+
+});
