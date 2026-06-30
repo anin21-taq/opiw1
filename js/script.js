@@ -68,7 +68,7 @@
     if(current < slides.length - 1) goToSlide(current + 1);
   });
 
-  goToSlide(0);
+ 
 
   const boxStage = document.getElementById('boxStage');
   const tapLabel = document.getElementById('tapLabel');
