@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maaf ya, Olfiana 🌷</title>
+<style>
+  :root{
+    --cream:#fff6f1;
+    --pink:#ff8fa3;
+    --pink-deep:#e85d75;
+    --plum:#5e3552;
+    --gold:#f4c95d;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html, body{ height:100%; }
+  body{
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: linear-gradient(160deg, var(--cream), #ffeef2 60%, #ffe3ea);
+    color: var(--plum);
+    overflow:hidden;
+    position:relative;
+  }
+  .display{ font-family: Georgia, 'Times New Roman', serif; font-weight:700; }
+
+  .bg-heart{
+    position:fixed; bottom:-10%; font-size:1.4rem; opacity:0.5;
+    animation: floatUp linear infinite; pointer-events:none; z-index:0;
+  }
+  @keyframes floatUp{
+    0%{ transform: translateY(0) rotate(0deg); opacity:0;}
+    10%{opacity:0.6;} 90%{opacity:0.5;}
+    100%{ transform: translateY(-110vh) rotate(360deg); opacity:0;}
+  }
+
+  .progress-wrap{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; gap:6px; padding:14px 18px;
+  }
+  .progress-seg{
+    flex:1; height:4px; border-radius:4px;
+    background: rgba(232,93,117,0.18);
+    overflow:hidden;
+  }
+  .progress-seg-fill{
+    height:100%; width:0%; background: var(--pink-deep);
+    transition: width 0.1s linear;
+  }
+  .progress-seg.done .progress-seg-fill{ width:100%; transition:none; }
+
+  .stage{ position:relative; width:100%; height:100vh; z-index:1; }
+  .slide{
+    position:absolute; inset:0;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    padding: 90px 24px 70px;
+    opacity:0;
+    pointer-events:none;
+    transition: opacity 0.6s ease;
+  }
+  .slide.active{ opacity:1; pointer-events:auto; }
+
+  .eyebrow{
+    letter-spacing:3px; text-transform:uppercase; font-size:0.75rem;
+    color: var(--pink-deep); font-weight:600; margin-bottom:14px;
+    opacity:0; transform:translateY(14px);
+  }
+  .slide-icon{ font-size:3rem; margin-bottom:18px; opacity:0; transform: scale(0.5); }
+  h1{
+    font-size: clamp(1.9rem, 6vw, 3rem);
+    line-height:1.18; margin-bottom:10px;
+    opacity:0; transform:translateY(20px);
+  }
+  h1 span{ color: var(--pink-deep); }
+  .subname{ font-size:1.05rem; color:#a0617a; margin-bottom:6px; opacity:0; transform:translateY(20px); }
+  .slide p.body-text{ max-width:520px; font-size:1.08rem; line-height:1.75; color:#5e4451; opacity:0; transform:translateY(20px); }
+  .card-box{
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(232,93,117,0.15);
+    border-radius: 22px;
+    padding: 30px 26px;
+    max-width:520px;
+    box-shadow: 0 14px 40px rgba(232,93,117,0.12);
+    opacity:0; transform: translateY(24px) scale(0.97);
+  }
+  .card-box h2{ font-size:1.15rem; color: var(--pink-deep); margin-bottom:10px; }
+  .card-box p{ font-size:1.02rem; line-height:1.7; color:#5e4451; }
+
+  .slide.active .eyebrow,
+  .slide.active .slide-icon,
+  .slide.active h1,
+  .slide.active .subname,
+  .slide.active .body-text,
+  .slide.active .card-box{ animation: riseIn 0.7s ease forwards; }
+  .slide.active .slide-icon{ animation: popIn 0.7s ease forwards; }
+  .slide.active .card-box{ animation: cardPop 0.7s ease forwards; }
+  .slide.active .eyebrow{ animation-delay: 0.05s; }
+  .slide.active .slide-icon{ animation-delay: 0.1s; }
+  .slide.active h1{ animation-delay: 0.2s; }
+  .slide.active .subname{ animation-delay: 0.32s; }
+  .slide.active .body-text{ animation-delay: 0.4s; }
+  .slide.active .card-box{ animation-delay: 0.25s; }
+
+  @keyframes riseIn{ to{ opacity:1; transform:translateY(0); } }
+  @keyframes popIn{ to{ opacity:1; transform:scale(1); } }
+  @keyframes cardPop{ to{ opacity:1; transform:translateY(0) scale(1); } }
+
+  .signature{ margin-top:22px; font-style:italic; color:#a0617a; opacity:0; transform:translateY(16px); }
+  .slide.active .signature{ animation: riseIn 0.7s ease forwards; animation-delay:0.6s; }
+
+  .nav-controls{ position:fixed; bottom:18px; left:0; right:0; z-index:50; display:flex; justify-content:center; gap:14px; opacity:0.85; }
+  .nav-btn{
+    background: rgba(255,255,255,0.75);
+    border:1px solid rgba(232,93,117,0.25);
+    color: var(--pink-deep);
+    font-size:0.85rem; font-weight:600;
+    padding:9px 18px; border-radius:30px;
+    cursor:pointer;
+    backdrop-filter: blur(4px);
+    transition: transform 0.15s ease, background 0.2s ease;
+  }
+  .nav-btn:hover{ transform: translateY(-2px); background:#fff; }
+  .nav-btn:active{ transform: translateY(0); }
+
+  .gift-hint{ color:#a0617a; margin-bottom: 30px; font-size:0.95rem; opacity:0; transform:translateY(16px); }
+  .slide.active .gift-hint{ animation: riseIn 0.7s ease forwards; animation-delay:0.35s; }
+
+  .box-stage{
+    position:relative; width: 200px; height: 190px; margin: 0 auto;
+    cursor:pointer; user-select:none;
+    opacity:0; transform: scale(0.7);
+  }
+  .slide.active .box-stage{ animation: popIn 0.7s ease forwards; animation-delay:0.45s; }
+
+  .box-base{
+    position:absolute; bottom:0; left:50%; transform: translateX(-50%);
+    width:170px; height:114px;
+    background: linear-gradient(160deg, var(--pink), var(--pink-deep));
+    border-radius: 10px;
+    box-shadow: 0 18px 30px rgba(232,93,117,0.35);
+    transition: transform 0.4s ease;
+  }
+  .box-base::before, .box-base::after{ content:""; position:absolute; background: var(--gold); }
+  .box-base::before{ left:50%; top:0; width:16px; height:100%; transform: translateX(-50%); }
+  .box-base::after{ top:46%; left:0; width:100%; height:16px; transform: translateY(-50%); }
+
+  .box-lid{
+    position:absolute; bottom:100px; left:50%; transform: translateX(-50%);
+    width:188px; height:32px;
+    background: linear-gradient(160deg, var(--pink-deep), #d6435f);
+    border-radius:8px;
+    box-shadow: 0 8px 14px rgba(232,93,117,0.3);
+    transition: transform 0.7s cubic-bezier(.34,1.56,.64,1), opacity 0.6s ease;
+    z-index:3;
+  }
+  .bow{
+    position:absolute; bottom:114px; left:50%; transform: translateX(-50%);
+    font-size:2rem; z-index:4;
+    transition: transform 0.6s ease, opacity 0.5s ease;
+  }
+  .box-stage.opened .box-lid{ transform: translate(-50%, -150px) rotate(-25deg); opacity:0; }
+  .box-stage.opened .bow{ transform: translate(-50%, -190px) scale(0.8) rotate(-25deg); opacity:0; }
+  .box-stage.opened .box-base{ transform: translateX(-50%) scale(1.03); }
+
+  .tap-label{ margin-top:14px; font-size:0.88rem; color: var(--pink-deep); font-weight:600; animation: pulse 1.6s infinite ease-in-out; }
+  @keyframes pulse{ 0%,100%{ opacity:0.6; } 50%{ opacity:1; } }
+
+  .love-reveal{
+    position:relative; margin: 8px auto 0; width:220px; height:220px;
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; transform: scale(0.3); pointer-events:none;
+    transition: transform 0.7s cubic-bezier(.34,1.56,.64,1), opacity 0.5s ease;
+  }
+  .love-reveal.show{ opacity:1; transform: scale(1); pointer-events:auto; }
+  .love-reveal.show .heart-shape{ animation: floatHeart 2.6s ease-in-out infinite, beatHeart 1.1s ease-in-out infinite; }
+
+  .heart-shape{ position:relative; width:200px; height:184px; filter: drop-shadow(0 14px 22px rgba(232,93,117,0.4)); }
+  .heart-shape svg{ width:100%; height:100%; display:block; }
+
+  @keyframes floatHeart{
+    0%, 100%{ transform: translateY(0) rotate(-2deg); }
+    50%{ transform: translateY(-14px) rotate(2deg); }
+  }
+  @keyframes beatHeart{
+    0%, 100%{ scale: 1; }
+    25%{ scale: 1.06; }
+    40%{ scale: 0.97; }
+    60%{ scale: 1.04; }
+  }
+
+  .photo-circle{
+    position:absolute; top:50%; left:50%; transform: translate(-50%, -46%);
+    width:108px; height:108px; border-radius:50%; overflow:hidden;
+    border: 4px solid #fff; box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+    display:flex; align-items:center; justify-content:center;
+    background: linear-gradient(160deg, #ffd9e1, #ffc1ce); font-size:2.2rem;
+  }
+
+  .reveal-caption{ margin-top:16px; color: var(--pink-deep); font-weight:600; font-size:1rem; opacity:0; transition: opacity 0.6s ease 0.4s; }
+  .reveal-caption.show{ opacity:1; }
+
+  .sparkle{ position:absolute; font-size:1rem; opacity:0; }
+
+  .skip-text{ position:fixed; top:14px; right:16px; z-index:60; font-size:0.78rem; color:#a0617a; opacity:0.7; cursor:pointer; }
+
+  @media (max-width:480px){
+    .stage{ padding:0; }
+    .slide{ padding: 80px 18px 64px; }
+    .card-box{ padding:24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-wrap" id="progressWrap"></div>
+<div class="skip-text" id="skipText">lewati ▸</div>
+
+<div class="stage" id="stage">
+
+  <div class="slide" data-duration="4200">
+    <div class="eyebrow">Untuk seseorang yang spesial</div>
+    <div class="slide-icon">🌷</div>
+    <h1 class="display">Maaf ya, <span>Olfiana Aleandra Mirdiawan</span></h1>
+    <p class="subname">aku tau ini gak cukup, tapi aku tetap mau bilang…</p>
+  </div>
+
+  <div class="slide" data-duration="5500">
+    <div class="card-box">
+      <h2>😔 Apa yang terjadi</h2>
+      <p>Aku gak teliti waktu baca pesan kamu, jadi aku salah paham dan responnya jadi gak sesuai sama yang kamu maksud. Itu murni kelalaian aku, bukan kamu yang salah jelasin.</p>
+    </div>
+  </div>
+
+  <div class="slide" data-duration="5500">
+    <div class="card-box">
+      <h2>💭 Yang aku sadari</h2>
+      <p>Hal sekecil "kurang teliti baca chat" ternyata bisa bikin kamu kecewa, dan itu artinya aku perlu lebih hati-hati lagi setiap kali kamu cerita atau ngomong sesuatu ke aku. Kamu pantas didengerin dengan benar.</p>
+    </div>
+  </div>
+
+  <div class="slide" data-duration="5800">
+    <div class="card-box">
+      <h2>🤍 Janjiku</h2>
+      <p>Mulai sekarang aku akan baca pesan kamu pelan-pelan, gak buru-buru, dan kalau ada yang gak jelas aku akan tanya dulu daripada salah paham lagi. Maaf ya, Olfiana.</p>
+    </div>
+    <div class="signature">— dari aku, yang masih belajar jadi lebih baik untuk kamu</div>
+  </div>
+
+  <div class="slide" data-duration="0">
+    <div class="eyebrow">Satu hadiah kecil</div>
+    <p class="gift-hint">buka kotaknya ya 🎁</p>
+
+    <div class="love-reveal" id="loveReveal">
+      <div class="heart-shape" id="heartShape">
+        <svg viewBox="0 0 220 200" xmlns="http://www.w3.org/2000/svg">
+          <path d="M110 190
+                   C 20 130, -10 70, 35 35
+                   C 65 10, 100 25, 110 55
+                   C 120 25, 155 10, 185 35
+                   C 230 70, 200 130, 110 190 Z"
+                fill="#ff8fa3" stroke="#e85d75" stroke-width="3"/>
+        </svg>
+        <div class="photo-circle" id="photoCircle">📷</div>
+      </div>
+    </div>
+    <div class="reveal-caption" id="revealCaption">maaf ya sayang, makasih udah selalu sabar sama aku 💕</div>
+
+    <div class="box-stage" id="boxStage">
+      <div class="bow">🎀</div>
+      <div class="box-lid"></div>
+      <div class="box-base"></div>
+    </div>
+    <div class="tap-label" id="tapLabel">tap kotaknya untuk dibuka</div>
+  </div>
+
+</div>
+
+<script>
+  const symbols = ['💗','🌸','💕','🌷','✨'];
+  for(let i=0;i<16;i++){
+    const el = document.createElement('div');
+    el.className = 'bg-heart';
+    el.textContent = symbols[Math.floor(Math.random()*symbols.length)];
+    el.style.left = Math.random()*100 + 'vw';
+    el.style.fontSize = (1 + Math.random()*1.2) + 'rem';
+    const duration = 9 + Math.random()*9;
+    el.style.animationDuration = duration + 's';
+    el.style.animationDelay = (Math.random()*duration) + 's';
+    document.body.appendChild(el);
+  }
+
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const progressWrap = document.getElementById('progressWrap');
+  const skipText = document.getElementById('skipText');
+  let current = 0;
+  let timer = null;
+  let segFills = [];
+
+  slides.forEach(() => {
+    const seg = document.createElement('div');
+    seg.className = 'progress-seg';
+    const fill = document.createElement('div');
+    fill.className = 'progress-seg-fill';
+    seg.appendChild(fill);
+    progressWrap.appendChild(seg);
+    segFills.push(seg);
+  });
+
+  function goToSlide(index){
+    if(index >= slides.length) index = slides.length - 1;
+    clearTimeout(timer);
+
+    slides.forEach((s, i) => s.classList.toggle('active', i === index));
+
+    segFills.forEach((seg, i) => {
+      seg.classList.remove('done');
+      const fill = seg.querySelector('.progress-seg-fill');
+      fill.style.transition = 'none';
+      fill.style.width = i < index ? '100%' : '0%';
+      if(i < index) seg.classList.add('done');
+    });
+
+    current = index;
+
+    const duration = parseInt(slides[index].dataset.duration, 10);
+    if(duration > 0){
+      const seg = segFills[index];
+      const fill = seg.querySelector('.progress-seg-fill');
+      requestAnimationFrame(()=>{
+        fill.style.transition = `width ${duration}ms linear`;
+        fill.style.width = '100%';
+      });
+      timer = setTimeout(() => goToSlide(current + 1), duration);
+    }
+
+    if(index === slides.length - 1){
+      skipText.style.display = 'none';
+    }
+  }
+
+  skipText.addEventListener('click', () => goToSlide(slides.length - 1));
+
+  document.getElementById('stage').addEventListener('click', (e) => {
+    if(e.target.closest('#boxStage')) return;
+    if(current < slides.length - 1) goToSlide(current + 1);
+  });
+
+  goToSlide(0);
+
+  const boxStage = document.getElementById('boxStage');
+  const tapLabel = document.getElementById('tapLabel');
+  const loveReveal = document.getElementById('loveReveal');
+  const revealCaption = document.getElementById('revealCaption');
+  let opened = false;
+
+  boxStage.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if(opened) return;
+    opened = true;
+    boxStage.classList.add('opened');
+    tapLabel.style.display = 'none';
+
+    setTimeout(() => { loveReveal.classList.add('show'); spawnSparkles(); }, 350);
+    setTimeout(() => { revealCaption.classList.add('show'); }, 900);
+  });
+
+  function spawnSparkles(){
+    const sparkleSymbols = ['✨','💫','⭐'];
+    for(let i=0;i<10;i++){
+      const s = document.createElement('div');
+      s.className = 'sparkle';
+      s.textContent = sparkleSymbols[Math.floor(Math.random()*sparkleSymbols.length)];
+      const angle = Math.random()*Math.PI*2;
+      const dist = 55 + Math.random()*55;
+      const x = Math.cos(angle)*dist;
+      const y = Math.sin(angle)*dist;
+      s.style.left = '50%';
+      s.style.top = '40%';
+      s.style.transition = 'transform 0.8s ease, opacity 0.8s ease';
+      loveReveal.appendChild(s);
+      requestAnimationFrame(()=>{
+        s.style.transform = `translate(${x}px, ${y}px) scale(1.3)`;
+        s.style.opacity = '1';
+      });
+      setTimeout(()=>{ s.style.opacity = '0'; }, 700);
+      setTimeout(()=> s.remove(), 1600);
+    }
+  }
+</script>
+
+</body>
+</html>
