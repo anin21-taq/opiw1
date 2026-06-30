@@ -280,7 +280,9 @@
     position:absolute;
 
     left:50%;
-    top:50%;
+    top:52%;
+
+    width:220px;
 
     transform:translate(-50%,-50%) scale(.2);
 
@@ -288,14 +290,102 @@
 
     transition:.8s ease;
 
+    z-index:20;
+
     pointer-events:none;
 
 }
 
 .love-photo.show{
 
-    opacity:1;
+    animation:zoomPhoto .8s forwards;
 
-    transform:translate(-50%,-50%) scale(1);
+}
+
+.love-photo svg{
+
+    width:220px;
+
+    height:auto;
+
+    display:block;
+
+}
+.sparkle{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    font-size:22px;
+
+    opacity:0;
+
+    transition:1s;
+
+    pointer-events:none;
+
+}
+#playBtn{
+
+    position:relative;
+
+    z-index:100000;
+
+}
+.intro-content{
+
+    position:relative;
+
+    z-index:100000;
+
+}
+.box-stage{
+
+    z-index:10;
+
+}
+.stage{
+
+    overflow:hidden;
+
+}
+@keyframes zoomPhoto{
+
+    from{
+
+        transform:translate(-50%,-50%) scale(.2);
+
+        opacity:0;
+
+    }
+
+    to{
+
+        transform:translate(-50%,-50%) scale(1);
+
+        opacity:1;
+
+    }
+
+}
+.reveal-caption{
+
+    position:relative;
+
+    z-index:30;
+
+}
+.love-photo image{
+
+    pointer-events:none;
+
+}
+.slide.active{
+
+    z-index:5;
 
 }
