@@ -68,47 +68,6 @@
     if(current < slides.length - 1) goToSlide(current + 1);
   });
 
- 
-
-  const boxStage = document.getElementById('boxStage');
-  const tapLabel = document.getElementById('tapLabel');
-  const loveReveal = document.getElementById('loveReveal');
-  const revealCaption = document.getElementById('revealCaption');
-  let opened = false;
-
-  boxStage.addEventListener('click', (e) => {
-    e.stopPropagation();
-    if(opened) return;
-    opened = true;
-    boxStage.classList.add('opened');
-    tapLabel.style.display = 'none';
-
-    setTimeout(() => { loveReveal.classList.add('show'); spawnSparkles(); }, 350);
-    setTimeout(() => { revealCaption.classList.add('show'); }, 900);
-  });
-
-  function spawnSparkles(){
-    const sparkleSymbols = ['✨','💫','⭐'];
-    for(let i=0;i<10;i++){
-      const s = document.createElement('div');
-      s.className = 'sparkle';
-      s.textContent = sparkleSymbols[Math.floor(Math.random()*sparkleSymbols.length)];
-      const angle = Math.random()*Math.PI*2;
-      const dist = 55 + Math.random()*55;
-      const x = Math.cos(angle)*dist;
-      const y = Math.sin(angle)*dist;
-      s.style.left = '50%';
-      s.style.top = '40%';
-      s.style.transition = 'transform 0.8s ease, opacity 0.8s ease';
-      loveReveal.appendChild(s);
-      requestAnimationFrame(()=>{
-        s.style.transform = `translate(${x}px, ${y}px) scale(1.3)`;
-        s.style.opacity = '1';
-      });
-      setTimeout(()=>{ s.style.opacity = '0'; }, 700);
-      setTimeout(()=> s.remove(), 1600);
-    }
-  }
 
 const boxStage = document.getElementById("boxStage");
 const tapLabel = document.getElementById("tapLabel");
