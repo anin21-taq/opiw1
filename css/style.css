@@ -275,35 +275,25 @@
     .card-box{ padding:24px 20px; }
   }
 
- .love-photo{
+.love-photo{
+
     position:absolute;
-
     left:50%;
-    bottom:65px;          /* awalnya di dalam kotak */
+    top:50%;
 
-    width:220px;
-    height:200px;
-
-    transform:translateX(-50%) scale(.2);
+    transform:translate(-50%,-50%) scale(.2);
 
     opacity:0;
 
-    z-index:1;
+    pointer-events:none;
 
-    transition:
-        bottom .9s cubic-bezier(.2,.9,.3,1),
-        transform .9s cubic-bezier(.2,.9,.3,1),
-        opacity .5s;
+    transition:.8s;
+
 }
-
 .love-photo.show{
-
-    bottom:185px;         /* keluar dari kotak */
 
     opacity:1;
 
-    transform:translateX(-50%) scale(1);
-
-    z-index:2;
+    transform:translate(-50%,-50%) scale(1);
 
 }

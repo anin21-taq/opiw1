@@ -110,25 +110,14 @@
     }
   }
 
-const music = document.getElementById("bgMusic");
-const playBtn = document.getElementById("playBtn");
-const introScreen = document.getElementById("introScreen");
+const boxStage = document.getElementById("boxStage");
+const tapLabel = document.getElementById("tapLabel");
+const revealCaption = document.getElementById("revealCaption");
 const lovePhoto = document.querySelector(".love-photo");
 
-// Mulai website setelah tombol diklik
-playBtn.addEventListener("click", () => {
+let opened = false;
 
-    music.play();
-
-    introScreen.classList.add("hide");
-
-    // Tunggu animasi overlay selesai
-    setTimeout(() => {
-        goToSlide(0);
-    }, 700);
-
-});
-boxStage.addEventListener("click", (e)=>{
+boxStage.addEventListener("click",(e)=>{
 
     e.stopPropagation();
 
