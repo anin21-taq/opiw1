@@ -110,10 +110,8 @@
     }
   }
 
-  const music = document.getElementById("bgMusic");
+const music = document.getElementById("bgMusic");
 
-window.addEventListener("load", () => {
-    music.play().catch(() => {
-        console.log("Browser memblokir autoplay.");
-    });
-});
+document.addEventListener("click", () => {
+    music.play();
+}, { once: true });
