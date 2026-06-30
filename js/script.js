@@ -128,11 +128,25 @@ playBtn.addEventListener("click", () => {
     }, 700);
 
 });
-setTimeout(() => {
-    lovePhoto.classList.add("show");
-    spawnSparkles();
-},350);
+boxStage.addEventListener("click", (e)=>{
 
-setTimeout(() => {
-    revealCaption.classList.add("show");
-},900);
+    e.stopPropagation();
+
+    if(opened) return;
+
+    opened = true;
+
+    boxStage.classList.add("opened");
+
+    tapLabel.style.display = "none";
+
+    setTimeout(()=>{
+        lovePhoto.classList.add("show");
+        spawnSparkles();
+    },350);
+
+    setTimeout(()=>{
+        revealCaption.classList.add("show");
+    },900);
+
+});
